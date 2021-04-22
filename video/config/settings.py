@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'muke_video',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': '192.168.0.102',
+        'HOST': '192.168.0.100',
         'PORT': 3306
 
     }
@@ -117,7 +117,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

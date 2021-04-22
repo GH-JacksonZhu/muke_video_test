@@ -1,0 +1,79 @@
+<%inherit file="/dashboard/base.html"/>
+<%! 
+    from django.shortcuts import reverse
+    from app.model.video import IdentityType
+%>
+<%def name="css()">
+ <link rel="stylesheet" href="/static/dashboard/css/video_sub.css">
+</%def>
+
+<%def name="content()">
+<h1>${video.name}</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>集数</th>
+            <th>地址</th>
+            <th>查看</th>
+        </tr>
+    </thead>
+    <tbody>        
+        % for video_sub in video.video_sub.all():
+            <tr>
+                <td>${video_sub.number}</td>
+                <td>${video_sub.url}</td>
+                <td><a href="http://${video_sub}">查看</a></td>
+            </tr>
+        %endfor
+    </tbody>
+</table>
+
+<form class="form-horizontal edit-area add-video-area" action="${reverse('video_sub',kwargs={'video_id':video.id})}" method="POST">
+    ${csrf_token}
+    <div class="form-group d1-area">
+        <div class="col-sm-offset-2 col-sm-10 d2-area">
+            <label>地址：</label><input placeholder="${url_error}" type="text" name="url" class="form-control input-important"/>
+            <button class="btn btn-info">添加</button>
+        </div>
+    </div>
+</form>
+
+<form class="form-horizontal edit-area add-video-area" action="${reverse('video_star')}" method="POST">
+    ${csrf_token}
+    <div class="form-group d1-area">
+        <div class="col-sm-offset-2 col-sm-10 d2-area">
+            <label>演员：</label><input type="text" name="name" class="form-control input-important"/>
+        </div>
+    </div>
+
+    <div class="form-group d1-area">
+        <div class="col-sm-offset-2 col-sm-10 d2-area">
+            <label>身份：</label>
+            <select name="identity" class="form-control video-select">
+                %for identity in IdentityType:
+                <option value="${identity.value}">${identity.label}</option>
+                %endfor
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group d1-area">
+        <label class="label-area">演员：</label>
+        <div class="col-sm-offset-2 col-sm-10 d2-area">
+            <ul class="ul-area">
+                %for video_star in video.video_star.all():
+                <li>${IdentityType(video_star.identity).label}:${video_star.name}<a href="${reverse('star_delete',kwargs={'star_id':video_star.id,'video_id':video.id})}">删除</a></li>
+                %endfor
+            </ul>
+        </div>
+    </div>
+
+    <div class="form-group d1-area">
+        <div class="col-sm-offset-2 col-sm-10 d2-area">
+            <input type="hidden" value="${video.id}" name="video_id"/>
+            <button class="btn btn-info">添加</button>${error}
+        </div>
+    </div>
+</form>
+</%def>

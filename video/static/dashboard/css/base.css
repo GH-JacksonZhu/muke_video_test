@@ -1,0 +1,48 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    margin: 3%;
+}
+
+#base-area {
+    width: 100%;
+    position: relative; /* 使用相对定位，这个父级定位 */
+    height: 100%;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.side-menu {
+    height: 100%;
+    width: 8%;
+    position: absolute; /* 相对定位，这是子级，以上面父级为标准，下面设置就是以父级为主 */
+    left: 0; /* 从最左边开始，0代表着与最左边的距离 */
+    top: 0; /* 同上 */
+    list-style: none;
+    padding-left: 0;
+}
+
+.side-menu > li {
+    text-align: center;
+    width: 100%;
+    line-height: 65px;
+    cursor: pointer; /* 鼠标放上去会变手指 */
+    border: 1px solid #cccc;
+    border-right: none;
+}
+
+.base-content {
+    width: 92%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 1px solid #cccc; 
+}

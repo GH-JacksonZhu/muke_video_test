@@ -1,0 +1,24 @@
+.edit-area {
+    width: 30%;
+    margin: 0% auto;
+    padding: 0%;
+}
+
+.input-important {
+    width: 50% !important;
+    display: inline-block !important;
+}
+
+.label-area {
+    margin-left: 19.5%;
+}
+
+.ul-area {
+    display: inline-block;
+    margin-left: 4.5%;
+}
+
+.video-select {
+    width: 49%;
+    display: inline-block;
+}
